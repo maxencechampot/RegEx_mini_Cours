@@ -1,0 +1,286 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
+
+*{box-sizing:border-box;margin:0;padding:0}
+body,html{background:transparent}
+
+:root{
+  --c1:#0a0a0a;--c2:#f5f0e8;--c3:#e8420a;--c4:#1a1a2e;
+  --c5:#f0ebe0;--mono:'Space Mono',monospace;--serif:'Lora',serif;
+}
+
+.site{font-family:var(--serif);color:var(--c1);background:var(--c5);border-radius:16px;overflow:hidden;border:1px solid rgba(0,0,0,0.1)}
+
+/* HERO */
+.hero{background:var(--c4);color:var(--c2);padding:3rem 2.5rem;position:relative;overflow:hidden}
+.hero::before{content:'[\\w.-]+@[\\w.-]+\\.[a-z]{2,}';position:absolute;top:-10px;right:-20px;font-family:var(--mono);font-size:11px;color:rgba(255,255,255,0.06);transform:rotate(-15deg);white-space:nowrap;pointer-events:none}
+.hero::after{content:'\\d{2}[-.\\s]?\\d{2}';position:absolute;bottom:20px;left:30px;font-family:var(--mono);font-size:11px;color:rgba(255,255,255,0.05);transform:rotate(5deg);pointer-events:none}
+.hero-tag{font-family:var(--mono);font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#e8420a;margin-bottom:1rem}
+.hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:600;line-height:1.15;margin-bottom:1.5rem}
+.hero h1 span{color:#e8420a;font-style:italic}
+.hero-def{font-size:1.1rem;line-height:1.8;max-width:620px;color:rgba(245,240,232,0.85)}
+.hero-def code{font-family:var(--mono);font-size:0.9rem;background:rgba(232,66,10,0.2);padding:2px 6px;border-radius:4px;color:#e8420a}
+
+/* SECTIONS */
+.section{padding:2.5rem}
+.section+.section{border-top:1px solid rgba(0,0,0,0.08)}
+.section-label{font-family:var(--mono);font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--c3);margin-bottom:0.5rem}
+.section h2{font-size:1.6rem;font-weight:600;margin-bottom:1.5rem;color:var(--c4)}
+
+/* PUISSANCE */
+.power-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.power-card{background:white;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:1.25rem;transition:transform 0.2s}
+.power-card:hover{transform:translateY(-2px)}
+.power-icon{font-size:1.5rem;margin-bottom:0.75rem}
+.power-card h3{font-family:var(--mono);font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--c3);margin-bottom:0.4rem}
+.power-card p{font-size:0.85rem;color:#555;line-height:1.5}
+
+/* SYNTAXE */
+.syntax-section{background:var(--c4)}
+.syntax-section h2{color:var(--c2)}
+.syntax-section .section-label{color:#e8420a}
+.syntax-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.syntax-group h3{font-family:var(--mono);font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:rgba(245,240,232,0.5);margin-bottom:0.75rem}
+.sym-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:8px}
+.sym{font-family:var(--mono);font-size:0.9rem;background:rgba(232,66,10,0.2);color:#e8420a;padding:3px 8px;border-radius:4px;min-width:60px;text-align:center;flex-shrink:0}
+.sym-desc{font-size:0.82rem;color:rgba(245,240,232,0.75);line-height:1.4;padding-top:4px}
+
+/* TERRAIN INTERACTIF */
+.playground{background:white}
+.regex-input-row{display:flex;gap:10px;margin-bottom:1rem;flex-wrap:wrap}
+.regex-input-row input{font-family:var(--mono);font-size:0.9rem;padding:8px 12px;border:1.5px solid #ddd;border-radius:8px;background:#fafafa;color:var(--c4)}
+#ri-pattern{flex:1;min-width:160px}
+#ri-text{flex:2;min-width:200px}
+.play-btn{font-family:var(--mono);font-size:0.8rem;background:var(--c3);color:white;border:none;padding:8px 18px;border-radius:8px;cursor:pointer;font-weight:700;letter-spacing:1px;transition:opacity 0.2s}
+.play-btn:hover{opacity:0.85}
+.result-box{background:#f8f8f8;border:1px solid #eee;border-radius:8px;padding:1rem;font-family:var(--mono);font-size:0.85rem;min-height:48px;line-height:1.8}
+.result-box mark{background:#ffe066;color:var(--c4);border-radius:3px;padding:0 2px}
+.result-meta{margin-top:8px;font-size:0.75rem;color:#999}
+
+/* EXEMPLES */
+.examples-section{background:#faf9f7}
+.ex-card{background:white;border:1px solid rgba(0,0,0,0.07);border-radius:12px;padding:1.25rem;margin-bottom:12px}
+.ex-card h3{font-family:var(--mono);font-size:0.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--c3);margin-bottom:0.6rem}
+.ex-card pre{font-family:var(--mono);font-size:0.78rem;background:#0a0a14;color:#a8d8a8;padding:1rem;border-radius:8px;overflow-x:auto;line-height:1.7}
+.ex-card pre .cm{color:#5a7a5a}
+.ex-card pre .kw{color:#88aaff}
+.ex-card pre .st{color:#ffb86c}
+.ex-card pre .rx{color:#ff79c6}
+.ex-output{margin-top:8px;font-size:0.8rem;color:#555;padding-left:4px}
+.ex-output code{font-family:var(--mono);background:#eef;padding:2px 5px;border-radius:3px;color:var(--c4)}
+
+/* CHEATSHEET */
+.cheat-section{background:var(--c4)}
+.cheat-section h2{color:var(--c2)}
+.cheat-section .section-label{color:#e8420a}
+.cheat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+.cheat-box{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:1rem}
+.cheat-box h3{font-family:var(--mono);font-size:0.68rem;letter-spacing:2px;text-transform:uppercase;color:rgba(245,240,232,0.4);margin-bottom:0.75rem}
+.cheat-item{display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:0.8rem}
+.cheat-item:last-child{border-bottom:none}
+.cheat-item .pat{font-family:var(--mono);color:#e8420a;font-size:0.78rem}
+.cheat-item .desc{color:rgba(245,240,232,0.65);font-size:0.75rem}
+
+/* FOOTER */
+.footer{background:#0a0a0a;color:rgba(255,255,255,0.35);text-align:center;padding:1.5rem;font-family:var(--mono);font-size:0.72rem;letter-spacing:1px}
+</style>
+
+<div class="site">
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">Data Science — outil essentiel</div>
+  <h1>Les <span>expressions</span><br>régulières</h1>
+  <p class="hero-def">
+    Une <code>RegEx</code> (Regular Expression) est un <strong>langage de motifs</strong> permettant de décrire, rechercher, extraire et transformer des structures de texte. Comme un scalpel pour la donnée brute : on définit la forme exacte de ce qu'on cherche — un email, une date, un code postal — et la RegEx le trouve, partout, instantanément.
+  </p>
+</div>
+
+<!-- PUISSANCE -->
+<div class="section">
+  <div class="section-label">01 — Pourquoi l'utiliser</div>
+  <h2>La puissance des RegEx</h2>
+  <div class="power-grid">
+    <div class="power-card">
+      <div class="power-icon">⛏</div>
+      <h3>Extraction</h3>
+      <p>Extraire emails, URLs, montants, dates d'un corpus de texte brut en une ligne</p>
+    </div>
+    <div class="power-card">
+      <div class="power-icon">✓</div>
+      <h3>Validation</h3>
+      <p>Vérifier qu'un champ respecte un format précis avant de traiter la donnée</p>
+    </div>
+    <div class="power-card">
+      <div class="power-icon">🧹</div>
+      <h3>Nettoyage</h3>
+      <p>Supprimer ou remplacer des patterns indésirables dans vos DataFrames</p>
+    </div>
+    <div class="power-card">
+      <div class="power-icon">⇄</div>
+      <h3>Transformation</h3>
+      <p>Standardiser des formats : dates, codes, numéros de téléphone</p>
+    </div>
+    <div class="power-card">
+      <div class="power-icon">🔎</div>
+      <h3>Parsing</h3>
+      <p>Analyser des logs serveur, des fichiers CSV malformés, du HTML brut</p>
+    </div>
+  </div>
+</div>
+
+<!-- SYNTAXE -->
+<div class="section syntax-section">
+  <div class="section-label">02 — Apprendre la syntaxe</div>
+  <h2>Les caractères fondamentaux</h2>
+  <div class="syntax-grid">
+    <div class="syntax-group">
+      <h3>Caractères spéciaux</h3>
+      <div class="sym-row"><span class="sym">.</span><span class="sym-desc">N'importe quel caractère (sauf newline)</span></div>
+      <div class="sym-row"><span class="sym">\d</span><span class="sym-desc">Un chiffre — équivalent à [0-9]</span></div>
+      <div class="sym-row"><span class="sym">\w</span><span class="sym-desc">Alphanumérique + underscore</span></div>
+      <div class="sym-row"><span class="sym">\s</span><span class="sym-desc">Espace, tabulation, newline</span></div>
+      <div class="sym-row"><span class="sym">^</span><span class="sym-desc">Début de chaîne</span></div>
+      <div class="sym-row"><span class="sym">$</span><span class="sym-desc">Fin de chaîne</span></div>
+      <div class="sym-row"><span class="sym">[abc]</span><span class="sym-desc">a, b ou c — classe de caractères</span></div>
+      <div class="sym-row"><span class="sym">|</span><span class="sym-desc">OU logique entre motifs</span></div>
+    </div>
+    <div class="syntax-group">
+      <h3>Quantificateurs</h3>
+      <div class="sym-row"><span class="sym">*</span><span class="sym-desc">0 ou plusieurs fois</span></div>
+      <div class="sym-row"><span class="sym">+</span><span class="sym-desc">1 ou plusieurs fois (au moins une)</span></div>
+      <div class="sym-row"><span class="sym">?</span><span class="sym-desc">0 ou 1 fois (élément optionnel)</span></div>
+      <div class="sym-row"><span class="sym">{3}</span><span class="sym-desc">Exactement 3 répétitions</span></div>
+      <div class="sym-row"><span class="sym">{2,5}</span><span class="sym-desc">Entre 2 et 5 répétitions</span></div>
+      <div class="sym-row"><span class="sym">{3,}</span><span class="sym-desc">Au moins 3 répétitions</span></div>
+      <div class="sym-row"><span class="sym">(...)</span><span class="sym-desc">Groupe de capture nommé</span></div>
+      <div class="sym-row"><span class="sym">\</span><span class="sym-desc">Échappe un caractère spécial</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- TERRAIN INTERACTIF -->
+<div class="section playground">
+  <div class="section-label">03 — Tester en direct</div>
+  <h2>Terrain d'essai RegEx</h2>
+  <div class="regex-input-row">
+    <input id="ri-pattern" type="text" placeholder="Motif RegEx, ex: \d+" value="\d+">
+    <input id="ri-text" type="text" placeholder="Texte à analyser..." value="J'ai 3 chats, 12 poissons et 1 chien.">
+    <button class="play-btn" onclick="runRegex()">TESTER</button>
+  </div>
+  <div class="result-box" id="ri-result">Cliquez sur TESTER pour voir les correspondances surlignées</div>
+  <div class="result-meta" id="ri-meta"></div>
+</div>
+
+<!-- EXEMPLES PYTHON -->
+<div class="section examples-section">
+  <div class="section-label">04 — Cas concrets</div>
+  <h2>Exemples Python data science</h2>
+
+  <div class="ex-card">
+    <h3>Extraction d'emails</h3>
+    <pre><span class="kw">import</span> re
+texte = <span class="st">"Contact: alice@gmail.com ou bob@corp.fr"</span>
+emails = re.findall(<span class="rx">r'[\w.-]+@[\w.-]+\.\w+'</span>, texte)
+<span class="cm"># → ['alice@gmail.com', 'bob@corp.fr']</span></pre>
+    <div class="ex-output">Résultat : <code>['alice@gmail.com', 'bob@corp.fr']</code></div>
+  </div>
+
+  <div class="ex-card">
+    <h3>Extraction de dates</h3>
+    <pre>doc = <span class="st">"Rapport du 12/03/2024 et du 05/11/2023"</span>
+dates = re.findall(<span class="rx">r'\d{2}/\d{2}/\d{4}'</span>, doc)
+<span class="cm"># → ['12/03/2024', '05/11/2023']</span></pre>
+    <div class="ex-output">Résultat : <code>['12/03/2024', '05/11/2023']</code></div>
+  </div>
+
+  <div class="ex-card">
+    <h3>Nettoyage de données (pandas)</h3>
+    <pre><span class="kw">import</span> pandas <span class="kw">as</span> pd
+df[<span class="st">'prix'</span>] = df[<span class="st">'prix'</span>].str.replace(<span class="rx">r'[€\s,]'</span>, <span class="st">''</span>, regex=<span class="kw">True</span>)
+<span class="cm"># "1 299,00 €" → "129900"</span></pre>
+    <div class="ex-output">Nettoie les montants avant conversion numérique</div>
+  </div>
+
+  <div class="ex-card">
+    <h3>Validation de numéro de téléphone FR</h3>
+    <pre>pattern = <span class="rx">r'^0[1-9](\d{2}){4}$'</span>
+numeros = [<span class="st">"0612345678"</span>, <span class="st">"06-12-34"</span>, <span class="st">"0145678901"</span>]
+valides = [n <span class="kw">for</span> n <span class="kw">in</span> numeros <span class="kw">if</span> re.match(pattern, n)]
+<span class="cm"># → ['0612345678', '0145678901']</span></pre>
+    <div class="ex-output">Résultat : <code>['0612345678', '0145678901']</code></div>
+  </div>
+
+  <div class="ex-card">
+    <h3>Parsing de logs serveur</h3>
+    <pre>log = <span class="st">'192.168.1.1 - - [12/Mar/2024] "GET /api 200 512"'</span>
+m = re.search(<span class="rx">r'(\d+\.\d+\.\d+\.\d+).*"(\w+)\s(\S+)\s(\d{3})'</span>, log)
+ip, methode, route, code = m.groups()
+<span class="cm"># → '192.168.1.1', 'GET', '/api', '200'</span></pre>
+    <div class="ex-output">Extrait IP, méthode, route et code HTTP en une RegEx</div>
+  </div>
+</div>
+
+<!-- CHEATSHEET -->
+<div class="section cheat-section">
+  <div class="section-label">05 — Référence rapide</div>
+  <h2>Cheatsheet</h2>
+  <div class="cheat-grid">
+    <div class="cheat-box">
+      <h3>Fonctions Python re</h3>
+      <div class="cheat-item"><span class="pat">re.findall()</span><span class="desc">Liste de toutes les occurrences</span></div>
+      <div class="cheat-item"><span class="pat">re.search()</span><span class="desc">Première correspondance</span></div>
+      <div class="cheat-item"><span class="pat">re.match()</span><span class="desc">Correspond au début uniquement</span></div>
+      <div class="cheat-item"><span class="pat">re.sub()</span><span class="desc">Remplacer des occurrences</span></div>
+      <div class="cheat-item"><span class="pat">re.split()</span><span class="desc">Découper selon un motif</span></div>
+      <div class="cheat-item"><span class="pat">re.compile()</span><span class="desc">Compiler pour réutilisation</span></div>
+    </div>
+    <div class="cheat-box">
+      <h3>Patterns fréquents</h3>
+      <div class="cheat-item"><span class="pat">[\w.-]+@[\w.-]+\.\w+</span><span class="desc">Email</span></div>
+      <div class="cheat-item"><span class="pat">https?://\S+</span><span class="desc">URL</span></div>
+      <div class="cheat-item"><span class="pat">\d{2}/\d{2}/\d{4}</span><span class="desc">Date JJ/MM/AAAA</span></div>
+      <div class="cheat-item"><span class="pat">0[1-9](\d{2}){4}</span><span class="desc">Tél. français</span></div>
+      <div class="cheat-item"><span class="pat">\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}</span><span class="desc">Adresse IP</span></div>
+      <div class="cheat-item"><span class="pat">[A-Z]{1,2}\d{4,5}</span><span class="desc">Code produit</span></div>
+    </div>
+    <div class="cheat-box">
+      <h3>Flags utiles</h3>
+      <div class="cheat-item"><span class="pat">re.IGNORECASE</span><span class="desc">Insensible à la casse</span></div>
+      <div class="cheat-item"><span class="pat">re.MULTILINE</span><span class="desc">^ et $ par ligne</span></div>
+      <div class="cheat-item"><span class="pat">re.DOTALL</span><span class="desc">. inclut les newlines</span></div>
+      <div class="cheat-item"><span class="pat">re.VERBOSE</span><span class="desc">RegEx commentées</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">regular expressions — data science essentials</div>
+</div>
+
+<script>
+function runRegex(){
+  const pat=document.getElementById('ri-pattern').value;
+  const txt=document.getElementById('ri-text').value;
+  const res=document.getElementById('ri-result');
+  const meta=document.getElementById('ri-meta');
+  if(!pat||!txt){res.textContent='Entrez un motif et un texte.';return;}
+  try{
+    const rx=new RegExp(pat,'g');
+    const matches=[...txt.matchAll(rx)];
+    if(matches.length===0){res.textContent=txt;meta.textContent='Aucune correspondance trouvée.';return;}
+    let out='';let last=0;
+    for(const m of matches){
+      out+=txt.slice(last,m.index).replace(/</g,'&lt;');
+      out+='<mark>'+m[0].replace(/</g,'&lt;')+'</mark>';
+      last=m.index+m[0].length;
+    }
+    out+=txt.slice(last).replace(/</g,'&lt;');
+    res.innerHTML=out;
+    meta.textContent=matches.length+' correspondance'+(matches.length>1?'s':'')+' trouvée'+(matches.length>1?'s':'')+'.'
+  }catch(e){res.textContent='RegEx invalide : '+e.message;meta.textContent=''}
+}
+document.getElementById('ri-text').addEventListener('keydown',e=>{if(e.key==='Enter')runRegex()});
+document.getElementById('ri-pattern').addEventListener('keydown',e=>{if(e.key==='Enter')runRegex()});
+runRegex();
+</script>
